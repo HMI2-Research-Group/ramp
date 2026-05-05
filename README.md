@@ -1,14 +1,12 @@
 # RAMP Implementation Website
 
-This repository is set up as a static GitHub Pages website for hosting the
-RAMP implementation, project documentation, architecture notes, milestones, and
-deployment instructions.
+This repository is set up as a static GitHub Pages website for the RAMP policy
+methodology, environment setup, diagrams, and execution protocol.
 
 ## Files
 
 - `index.html` - main website page
 - `styles.css` - responsive visual design
-- `script.js` - small page interaction layer
 
 ## Run Locally
 

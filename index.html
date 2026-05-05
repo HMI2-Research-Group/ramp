@@ -5,191 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="RAMP implementation website for documentation, architecture, demos, and project updates."
+      content="RAMP policy methodology for affordance-aware robot assignment and motion-feasibility ranking."
     >
-    <title>RAMP Implementation</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    >
+    <title>RAMP Policy</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="RAMP home">
-        <span class="brand-mark" aria-hidden="true">R</span>
-        <span>RAMP</span>
-      </a>
-      <nav class="nav" aria-label="Primary navigation">
-        <a href="#implementation">Implementation</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#milestones">Milestones</a>
-        <a href="#deploy">Deploy</a>
-      </nav>
-    </header>
+    <main class="page">
+      <header class="intro">
+        <p class="label">RAMP Implementation</p>
+        <h1>RAMP Policy</h1>
+        <p>
+          RAMP is a hybrid robot policy that combines language-model symbolic
+          planning with affordance-aware robot assignment and motion-feasibility
+          ranking. The policy uses an LLM plan as a proposal, then checks robot
+          capabilities, object affordances, placement geometry, and simulated
+          execution before choosing an action.
+        </p>
+      </header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">GitHub Pages project site</p>
-          <h1>RAMP Implementation</h1>
-          <p class="lede">
-            A focused project hub for hosting the RAMP implementation, tracking
-            progress, and sharing the technical design behind the system.
-          </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="#implementation">View Implementation</a>
-            <a class="button secondary" href="#deploy">Publish on GitHub Pages</a>
-          </div>
+      <section>
+        <h2>Environment Setup</h2>
+        <p>
+          The experiments use a dual-UR10 tabletop setup with a tray target and
+          multiple household objects. The four arrangements below represent
+          different initial object layouts used to test whether RAMP can adapt
+          robot assignment and grasp strategy from the current belief state.
+        </p>
+
+        <div class="arrangements" aria-label="Four environment arrangements">
+          <figure>
+            <img src="assets/arrangement1.png" alt="RAMP environment arrangement A">
+            <figcaption>Arrangement A</figcaption>
+          </figure>
+
+          <figure>
+            <img src="assets/arrangement2.png" alt="RAMP environment arrangement B">
+            <figcaption>Arrangement B</figcaption>
+          </figure>
+
+          <figure>
+            <img src="assets/arrangement3.png" alt="RAMP environment arrangement C">
+            <figcaption>Arrangement C</figcaption>
+          </figure>
+
+          <figure>
+            <img src="assets/arrangement4.png" alt="RAMP environment arrangement D">
+            <figcaption>Arrangement D</figcaption>
+          </figure>
         </div>
 
-        <div class="system-panel" aria-label="RAMP system overview">
-          <div class="panel-topline">
-            <span class="status-dot" aria-hidden="true"></span>
-            <span>Implementation workspace</span>
-          </div>
-          <div class="flow-diagram">
-            <div class="flow-node input">
-              <span>01</span>
-              <strong>Inputs</strong>
-              <small>Data, parameters, and project configuration</small>
-            </div>
-            <div class="flow-node core">
-              <span>02</span>
-              <strong>RAMP Core</strong>
-              <small>Processing pipeline and model logic</small>
-            </div>
-            <div class="flow-node output">
-              <span>03</span>
-              <strong>Outputs</strong>
-              <small>Results, metrics, and visual summaries</small>
-            </div>
-          </div>
-          <div class="metrics-grid" aria-label="Project metrics">
-            <div>
-              <strong>Static</strong>
-              <span>Pages-ready</span>
-            </div>
-            <div>
-              <strong>Modular</strong>
-              <span>Docs + demos</span>
-            </div>
-            <div>
-              <strong>Open</strong>
-              <span>GitHub-hosted</span>
-            </div>
-          </div>
+        <figure class="legend">
+          <img src="assets/objects-legend.png" alt="Object legend for the RAMP environment">
+          <figcaption>Scene object legend</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Methodology</h2>
+        <p>
+          At the beginning of each episode, the environment is reset and the
+          first observation is converted into a belief state. The belief tracks
+          scene frames, object poses, robot capabilities, object affordances,
+          held objects, tray placements, and recovery poses from interrupted
+          executions.
+        </p>
+        <p>
+          Given the belief and the natural-language goal, RAMP queries an LLM
+          for a symbolic Python plan containing high-level actions such as
+          <code>pick</code>, <code>place</code>, <code>lift</code>, and
+          <code>return_home</code>. RAMP does not directly execute this plan.
+          It treats the LLM output as an initial proposal and rewrites it using
+          affordance and robot-capability metadata.
+        </p>
+
+        <div class="diagram pipeline" aria-label="RAMP planning pipeline">
+          <div>Belief State</div>
+          <span></span>
+          <div>LLM Plan</div>
+          <span></span>
+          <div>Affordance Rewrite</div>
+          <span></span>
+          <div>Twin Rollout</div>
+          <span></span>
+          <div>Best Action</div>
         </div>
       </section>
 
-      <section id="implementation" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Implementation</p>
-          <h2>What this site is set up to host</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <span class="card-number">01</span>
-            <h3>Working Demo</h3>
-            <p>
-              Add your runnable RAMP demo, screenshots, notebooks, or hosted
-              interface here as the implementation matures.
-            </p>
-          </article>
-          <article class="feature-card">
-            <span class="card-number">02</span>
-            <h3>Technical Notes</h3>
-            <p>
-              Document assumptions, model choices, data flow, dependencies, and
-              design decisions in one stable public location.
-            </p>
-          </article>
-          <article class="feature-card">
-            <span class="card-number">03</span>
-            <h3>Results</h3>
-            <p>
-              Publish evaluation metrics, experiment summaries, visuals, and
-              comparisons as the project evolves.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="architecture" class="section split-section">
-        <div>
-          <p class="eyebrow">Architecture</p>
-          <h2>A lightweight structure for the RAMP workflow</h2>
-          <p>
-            This page is intentionally static so it can be served by GitHub
-            Pages with no server, database, build system, or deployment
-            pipeline. The layout is ready for richer content once the RAMP
-            implementation files are added to the repository.
-          </p>
-        </div>
-        <div class="architecture-list">
-          <div class="architecture-item">
-            <strong>Repository</strong>
-            <span>Source code, documentation, and assets live together.</span>
-          </div>
-          <div class="architecture-item">
-            <strong>Website</strong>
-            <span>GitHub Pages serves the static project interface.</span>
-          </div>
-          <div class="architecture-item">
-            <strong>Implementation</strong>
-            <span>RAMP modules can be linked from demos, docs, or releases.</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="milestones" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Milestones</p>
-          <h2>Project roadmap</h2>
-        </div>
-        <ol class="timeline">
+      <section>
+        <h2>Affordance-Aware Refinement</h2>
+        <ul>
           <li>
-            <span>Step 1</span>
-            <strong>Publish the project site</strong>
-            <p>Enable GitHub Pages from the repository settings.</p>
+            Suction grasps are assigned top-down z picks with a
+            <code>top_center</code> strategy.
           </li>
           <li>
-            <span>Step 2</span>
-            <strong>Add RAMP implementation files</strong>
-            <p>Place source, examples, or demo artifacts in the repository.</p>
+            Finger grasps use side-pick directions with edge or handle grasp
+            strategies.
           </li>
           <li>
-            <span>Step 3</span>
-            <strong>Document usage and results</strong>
-            <p>Replace placeholder sections with exact commands and outcomes.</p>
+            Interchangeable objects can be substituted within a semantic
+            category, such as choosing the nearest plate-like object.
+          </li>
+          <li>
+            Placement actions are rewritten from belief-state geometry instead
+            of hardcoded coordinates.
+          </li>
+          <li>
+            Tray slots are selected near the responsible robot, with yaw
+            adjusted for handled objects such as mugs.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Candidate Ranking</h2>
+        <p>
+          RAMP evaluates several plan variants: the original LLM proposal,
+          nearest-compatible-robot assignments, and robot-biased variants for
+          each manipulator. Each candidate is executed in a sampled twin
+          environment without visualization.
+        </p>
+
+        <pre class="formula"><code>score = task_cost
+      + w_d * end_effector_distance
+      + w_c * capability_penalty
+      + w_v * constraint_violations</code></pre>
+
+        <div class="diagram scoring" aria-label="Candidate scoring diagram">
+          <div>Task cost</div>
+          <div>Distance</div>
+          <div>Capability match</div>
+          <div>Constraints</div>
+          <strong>lowest score wins</strong>
+        </div>
+      </section>
+
+      <section>
+        <h2>Closed-Loop Execution</h2>
+        <p>
+          The selected plan is cached and returned one action at a time. The
+          real environment executes each action using motion planning, including
+          KOMO-based pick, lift, transport, and place motions. If an action
+          succeeds, RAMP continues with the cached plan. If execution fails or
+          creates constraint violations, the plan is invalidated and RAMP
+          replans from the updated belief state.
+        </p>
+        <p>
+          Consecutive pick failures are tracked per object. After repeated
+          failures, the object is marked unreachable and removed from future
+          candidate plans to avoid retry loops.
+        </p>
+      </section>
+
+      <section>
+        <h2>Execution Protocol</h2>
+        <ol>
+          <li>Instantiate the task, updater, environment, and policy from Hydra.</li>
+          <li>Reset the environment and initialize the belief from observation.</li>
+          <li>Sample a twin environment for policy-side simulation.</li>
+          <li>Pass the current goal and belief to RAMP at every step.</li>
+          <li>Execute the selected action in the real environment.</li>
+          <li>Log execution statistics and feed success or constraint feedback to RAMP.</li>
+          <li>
+            Stop when the task is complete, no action remains, or the maximum
+            number of environment steps is reached.
           </li>
         </ol>
-      </section>
-
-      <section id="deploy" class="section deploy-section">
-        <div>
-          <p class="eyebrow">Deploy</p>
-          <h2>GitHub Pages setup</h2>
-          <p>
-            Push this repository to GitHub, then enable Pages using the
-            <strong>main</strong> branch and the repository root as the source.
-          </p>
-        </div>
-        <div class="command-card" aria-label="GitHub Pages setup summary">
-          <code>Settings -> Pages -> Build and deployment -> Deploy from branch</code>
-          <code>Branch: main</code>
-          <code>Folder: /root</code>
-        </div>
+        <p>
+          In the reported configuration, RAMP uses at most 15 environment steps,
+          one feedback cycle, LLM querying enabled, and up to 50 candidate
+          evaluations.
+        </p>
       </section>
     </main>
-
-    <footer class="site-footer">
-      <span>RAMP Implementation</span>
-      <a href="#top">Back to top</a>
-    </footer>
-
-    <script src="script.js"></script>
   </body>
 </html>
