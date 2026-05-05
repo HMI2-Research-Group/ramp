@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="RAMP implementation website for documentation, architecture, demos, and project updates."
+    >
+    <title>RAMP Implementation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="RAMP home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>RAMP</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#implementation">Implementation</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#deploy">Deploy</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">GitHub Pages project site</p>
+          <h1>RAMP Implementation</h1>
+          <p class="lede">
+            A focused project hub for hosting the RAMP implementation, tracking
+            progress, and sharing the technical design behind the system.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="#implementation">View Implementation</a>
+            <a class="button secondary" href="#deploy">Publish on GitHub Pages</a>
+          </div>
+        </div>
+
+        <div class="system-panel" aria-label="RAMP system overview">
+          <div class="panel-topline">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Implementation workspace</span>
+          </div>
+          <div class="flow-diagram">
+            <div class="flow-node input">
+              <span>01</span>
+              <strong>Inputs</strong>
+              <small>Data, parameters, and project configuration</small>
+            </div>
+            <div class="flow-node core">
+              <span>02</span>
+              <strong>RAMP Core</strong>
+              <small>Processing pipeline and model logic</small>
+            </div>
+            <div class="flow-node output">
+              <span>03</span>
+              <strong>Outputs</strong>
+              <small>Results, metrics, and visual summaries</small>
+            </div>
+          </div>
+          <div class="metrics-grid" aria-label="Project metrics">
+            <div>
+              <strong>Static</strong>
+              <span>Pages-ready</span>
+            </div>
+            <div>
+              <strong>Modular</strong>
+              <span>Docs + demos</span>
+            </div>
+            <div>
+              <strong>Open</strong>
+              <span>GitHub-hosted</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="implementation" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Implementation</p>
+          <h2>What this site is set up to host</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="card-number">01</span>
+            <h3>Working Demo</h3>
+            <p>
+              Add your runnable RAMP demo, screenshots, notebooks, or hosted
+              interface here as the implementation matures.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="card-number">02</span>
+            <h3>Technical Notes</h3>
+            <p>
+              Document assumptions, model choices, data flow, dependencies, and
+              design decisions in one stable public location.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="card-number">03</span>
+            <h3>Results</h3>
+            <p>
+              Publish evaluation metrics, experiment summaries, visuals, and
+              comparisons as the project evolves.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture" class="section split-section">
+        <div>
+          <p class="eyebrow">Architecture</p>
+          <h2>A lightweight structure for the RAMP workflow</h2>
+          <p>
+            This page is intentionally static so it can be served by GitHub
+            Pages with no server, database, build system, or deployment
+            pipeline. The layout is ready for richer content once the RAMP
+            implementation files are added to the repository.
+          </p>
+        </div>
+        <div class="architecture-list">
+          <div class="architecture-item">
+            <strong>Repository</strong>
+            <span>Source code, documentation, and assets live together.</span>
+          </div>
+          <div class="architecture-item">
+            <strong>Website</strong>
+            <span>GitHub Pages serves the static project interface.</span>
+          </div>
+          <div class="architecture-item">
+            <strong>Implementation</strong>
+            <span>RAMP modules can be linked from demos, docs, or releases.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="milestones" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Milestones</p>
+          <h2>Project roadmap</h2>
+        </div>
+        <ol class="timeline">
+          <li>
+            <span>Step 1</span>
+            <strong>Publish the project site</strong>
+            <p>Enable GitHub Pages from the repository settings.</p>
+          </li>
+          <li>
+            <span>Step 2</span>
+            <strong>Add RAMP implementation files</strong>
+            <p>Place source, examples, or demo artifacts in the repository.</p>
+          </li>
+          <li>
+            <span>Step 3</span>
+            <strong>Document usage and results</strong>
+            <p>Replace placeholder sections with exact commands and outcomes.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="deploy" class="section deploy-section">
+        <div>
+          <p class="eyebrow">Deploy</p>
+          <h2>GitHub Pages setup</h2>
+          <p>
+            Push this repository to GitHub, then enable Pages using the
+            <strong>main</strong> branch and the repository root as the source.
+          </p>
+        </div>
+        <div class="command-card" aria-label="GitHub Pages setup summary">
+          <code>Settings -> Pages -> Build and deployment -> Deploy from branch</code>
+          <code>Branch: main</code>
+          <code>Folder: /root</code>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>RAMP Implementation</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
